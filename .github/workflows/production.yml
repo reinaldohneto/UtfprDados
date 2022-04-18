@@ -13,7 +13,7 @@ jobs:
     env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         APP_NAME: ${{ 'utfpr-dados-api' }}
-        working-directory: ./UtfprDados/Utfpr.Dados/Utfpr.Dados.Api
+        working-directory: Utfpr.Dados/Utfpr.Dados.Api
     steps:
     - name: Checkout
       uses: actions/checkout@v2
