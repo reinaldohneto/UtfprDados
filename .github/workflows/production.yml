@@ -17,13 +17,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-#    - name: Diretorios
-#      run: ls
-    - name: Publish image
+    - name: Diretorios
       run: |
         ls
         cd Utfpr.Dados
         ls
+    - name: Publish image
+      run: |
         docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
         heroku container:push web -a $APP_NAME
         heroku container:release web -a $APP_NAME
