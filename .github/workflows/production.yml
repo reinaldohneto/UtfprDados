@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Diretorios
+      run: ls
     - name: Publish image
       run: |
         docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
