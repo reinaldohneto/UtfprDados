@@ -11,4 +11,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 
-CMD ASPNETCORE_URLS="http://*:$PORT" dotnet Utfpr.Api.Scan.dll
+CMD ASPNETCORE_URLS="http://*:$PORT" dotnet Utfpr.Dados.API.dll

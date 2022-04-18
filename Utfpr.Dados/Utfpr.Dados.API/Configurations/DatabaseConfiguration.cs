@@ -25,7 +25,7 @@ public static class DatabaseConfiguration
         string defaultConnectionString;
 
         if (environmentName == "Development") {
-            defaultConnectionString = configuration.GetConnectionString("Postgres");
+            defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
         }
         else
         {
