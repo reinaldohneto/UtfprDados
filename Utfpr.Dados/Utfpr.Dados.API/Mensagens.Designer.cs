@@ -88,6 +88,24 @@ namespace Utfpr.Dados.API {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocorreu um erro, tente novamente mais tarde..
+        /// </summary>
+        internal static string ErroInterno {
+            get {
+                return ResourceManager.GetString("ErroInterno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login ou senha incorretos.
+        /// </summary>
+        internal static string LoginOuSenhaIncorretos {
+            get {
+                return ResourceManager.GetString("LoginOuSenhaIncorretos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Objeto de entrada inválido.
         /// </summary>
         internal static string ObjetoEntradaInvalido {

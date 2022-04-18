@@ -14,7 +14,11 @@ public class UsuariosController : MainController
     {
     }
 
-    [HttpPost]
+    [HttpPost("cadastrar-usuario")]
     public async Task<ActionResult<UsuarioViewModel>> CadastrarUsuario(CadastrarUsuarioCommand command)
         => await ExecutarCommandCadastro(command, nameof(CadastrarUsuario));
+
+    [HttpPost("login")]
+    public async Task<ActionResult<TokenViewModel>> EfetuarLogin(EfetuarLoginCommand command)
+        => await ExecutarCommandCadastro(command, nameof(EfetuarLogin));
 }
