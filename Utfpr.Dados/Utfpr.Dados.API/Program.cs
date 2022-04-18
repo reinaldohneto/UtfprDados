@@ -1,4 +1,5 @@
 using Utfpr.Dados.API.Configurations;
+using Utfpr.Dados.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.DependencyInjectionConfiguration();
 builder.Services.AddProfilesConfiguration();
-builder.Services.ConfigureDatabase(builder.Configuration);
+builder.Services.ConfigureDatabase(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 
@@ -17,6 +18,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+await app.MigrateDatabase<ApplicationContext>();
 
 app.UseHttpsRedirection();
 
