@@ -4,7 +4,7 @@ namespace Utfpr.Dados.API.Configurations;
 
 public static class MigrateConfiguration
 {
-    public static async Task<WebApplication> MigrateDatabase<T>(this WebApplication app) where T : DbContext
+    public static async Task MigrateDatabase<T>(this WebApplication app) where T : DbContext
     {
         using(var scope = app.Services.CreateScope())
         {
@@ -28,6 +28,5 @@ public static class MigrateConfiguration
                 logger.LogError(ex, "An error occurred while migrating the database.");
             }
         }
-        return app;
     }
 }

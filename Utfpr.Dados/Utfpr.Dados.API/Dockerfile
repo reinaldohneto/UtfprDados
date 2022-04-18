@@ -1,20 +1,14 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["Utfpr.Dados.API/Utfpr.Dados.API.csproj", "Utfpr.Dados.API/"]
-RUN dotnet restore "Utfpr.Dados.API/Utfpr.Dados.API.csproj"
-COPY . .
-WORKDIR "/src/Utfpr.Dados.API"
-RUN dotnet build "Utfpr.Dados.API.csproj" -c Release -o /app/build
+COPY *.csproj ./
+RUN dotnet restore
 
-FROM build AS publish
-RUN dotnet publish "Utfpr.Dados.API.csproj" -c Release -o /app/publish
+COPY . ./
+RUN dotnet publish -c Release -o out
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Utfpr.Dados.API.dll"]
+COPY --from=build-env /app/out .
+
+CMD ASPNETCORE_URLS="http://*:$PORT" dotnet Utfpr.Api.Scan.dll
