@@ -12,7 +12,7 @@ public class NotificationMessage
         Descricao = descricao;
         Status = status;
     }
-
+    
     public string Campo { get; private set; }
     public string Codigo { get; private set; }
     public string Valor { get; private set; }

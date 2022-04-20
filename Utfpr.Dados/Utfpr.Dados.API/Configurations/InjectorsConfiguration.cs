@@ -2,6 +2,9 @@ using System.Reflection;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Utfpr.Dados.API.Application.Notification;
+using Utfpr.Dados.API.Data.Repositories;
+using Utfpr.Dados.API.Domain;
+using Utfpr.Dados.API.Domain.Organizacoes.Interfaces;
 
 namespace Utfpr.Dados.API.Configurations;
 
@@ -13,5 +16,6 @@ public static class InjectorsConfig
         services.AddFluentValidation();
 
         services.AddScoped<NotificationContext>();
+        services.AddScoped<IOrganizacaoRepository, OrganizacaoRepository>();
     }
 }

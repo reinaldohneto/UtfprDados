@@ -1,9 +1,14 @@
 using Utfpr.Dados.API.Configurations;
+using Utfpr.Dados.API.Configurations.Api;
 using Utfpr.Dados.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt =>
+{
+    opt.Filters.Add(typeof(SyncFluentValidationFilter));
+    opt.Filters.Add(typeof(AsyncFluentValidationFilter));
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.DependencyInjectionConfiguration();
@@ -22,6 +27,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization();
 
 app.Run();

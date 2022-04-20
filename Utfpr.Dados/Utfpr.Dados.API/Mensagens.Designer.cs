@@ -113,5 +113,23 @@ namespace Utfpr.Dados.API {
                 return ResourceManager.GetString("ObjetoEntradaInvalido", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Já existe um registro com este nome..
+        /// </summary>
+        internal static string RegistroComNomeJahExistente {
+            get {
+                return ResourceManager.GetString("RegistroComNomeJahExistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registro não encontrado..
+        /// </summary>
+        internal static string RegistroNaoEncontrado {
+            get {
+                return ResourceManager.GetString("RegistroNaoEncontrado", resourceCulture);
+            }
+        }
     }
 }

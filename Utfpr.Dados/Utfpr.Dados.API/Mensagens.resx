@@ -36,4 +36,10 @@
     <data name="ErroInterno" xml:space="preserve">
         <value>Ocorreu um erro, tente novamente mais tarde.</value>
     </data>
+    <data name="RegistroNaoEncontrado" xml:space="preserve">
+        <value>Registro não encontrado.</value>
+    </data>
+    <data name="RegistroComNomeJahExistente" xml:space="preserve">
+        <value>Já existe um registro com este nome.</value>
+    </data>
 </root>
