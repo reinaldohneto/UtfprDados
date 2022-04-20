@@ -8,7 +8,6 @@ using Utfpr.Dados.API.Application.Organizacao.ViewModels;
 namespace Utfpr.Dados.API.Controllers;
 
 [Route("api/[controller]")]
-[AllowAnonymous]
 public class OrganizacoesController : MainController
 {
     public OrganizacoesController(IMediator mediator, NotificationContext notificacaoContext) : base(mediator, notificacaoContext)
