@@ -10,7 +10,7 @@ builder.Services.AddControllers(opt =>
     opt.Filters.Add(typeof(AsyncFluentValidationFilter));
 });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AdicionarAutenticacaoSwagger();
 builder.Services.DependencyInjectionConfiguration();
 builder.Services.AddProfilesConfiguration();
 builder.Services.ConfigureDatabase(builder.Configuration, builder.Environment);

@@ -56,7 +56,11 @@ public class EfetuarLoginCommandHandler : IRequestHandler<EfetuarLoginCommand, C
             new Claim("OrganizacaoId", usuario.OrganizacaoId.ToString())
         };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("TOKEN_CONFIGURATION_KEY") ?? throw new ArgumentNullException("Key")));
+        var jwtKey = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!.Equals("Production")
+            ? Environment.GetEnvironmentVariable("TOKEN_CONFIGURATION_KEY")
+            : _configuration.GetValue<string>("JwtKey");
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey ?? throw new ArgumentNullException("Key")));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
         var expiration = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["TokenConfigurations:Seconds"]));
