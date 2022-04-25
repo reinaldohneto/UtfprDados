@@ -29,4 +29,13 @@ public class OrganizacoesController : MainController
         [FromQuery] int pagina = PAGINA_PADRAO,
         [FromQuery] int itensPorPagina = ITENS_POR_PAGINA_PADRAO)
         => await ExecutarQueryPaginada(new ObterOrganizacoesQuery(pagina, itensPorPagina));
+    
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> DeletarOrganizacao(Guid id)
+        => await ExecutarCommandExclusao(new DeletarOrganizacaoCommand(id));
+    
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult<OrganizacaoViewModel>> AtualizarOrganizacao(Guid id,
+        [FromBody] AtualizarOrganizacaoCommand command)
+        => await ExecutarCommandAtualizacao(command.AtribuirOrganizacaoId(id));
 }

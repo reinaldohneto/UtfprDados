@@ -220,7 +220,7 @@ public abstract class MainController : ControllerBase
         return NoContent();
     }
 
-    protected async Task<IActionResult> ExecutarCommandExclusao<TCommand>(TCommand command)
+    protected async Task<ActionResult> ExecutarCommandExclusao<TCommand>(TCommand command)
         where TCommand : Command
     {
         if (!await _mediator.Send(command))
