@@ -1,5 +1,6 @@
 using FluentValidation;
 using Utfpr.Dados.API.Domain.Organizacoes.Validators;
+using Utfpr.Dados.API.Domain.SolicitacoesProcessamento.Entities;
 using Utfpr.Dados.API.Domain.Usuarios.Entities;
 
 namespace Utfpr.Dados.API.Domain.Organizacoes.Entities;
@@ -10,7 +11,8 @@ public class Organizacao : ValidatableEntity<Organizacao>
     public string? Descricao { get; set; }
 
     public virtual ICollection<Usuario> Usuarios { get; set; }
-    
+    public virtual ICollection<SolicitacaoProcessamento> SolicitacoesProcessamento { get; set; }
+
     protected override AbstractValidator<Organizacao> ObterValidator()
     {
         return new OrganizacaoValidator();

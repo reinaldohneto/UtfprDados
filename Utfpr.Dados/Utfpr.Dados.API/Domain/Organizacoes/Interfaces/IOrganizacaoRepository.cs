@@ -4,5 +4,5 @@ namespace Utfpr.Dados.API.Domain.Organizacoes.Interfaces;
 
 public interface IOrganizacaoRepository : IRepository<Organizacao>
 {
-    
+    Task<bool> ExisteSolicitacaoVinculada(Guid id);
 }

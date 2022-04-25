@@ -115,6 +115,15 @@ namespace Utfpr.Dados.API {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organização não pode ser excluída pois possui vínculo com solicitações de processamento..
+        /// </summary>
+        internal static string OrganizacaoPossuiVinculoComProcessamentos {
+            get {
+                return ResourceManager.GetString("OrganizacaoPossuiVinculoComProcessamentos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Já existe um registro com este nome..
         /// </summary>
         internal static string RegistroComNomeJahExistente {

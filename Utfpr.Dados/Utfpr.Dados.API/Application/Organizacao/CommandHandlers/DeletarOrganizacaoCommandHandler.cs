@@ -18,12 +18,15 @@ public class DeletarOrganizacaoCommandHandler : IRequestHandler<DeletarOrganizac
 
     public async Task<bool> Handle(DeletarOrganizacaoCommand request, CancellationToken cancellationToken)
     {
-        if (!await _organizacaoRepository.Deletar(request.Id))
-            return true;
+        if (await _organizacaoRepository.ExisteSolicitacaoVinculada(request.Id))
+        {
+            _notificationContext.BadRequest(nameof(Mensagens.OrganizacaoPossuiVinculoComProcessamentos), 
+                Mensagens.OrganizacaoPossuiVinculoComProcessamentos);
+            return false;
+        }
 
-        _notificationContext.NotFound(nameof(Mensagens.RegistroNaoEncontrado), 
-            Mensagens.RegistroNaoEncontrado);
-
+        await _organizacaoRepository.Deletar(request.Id);
+        
         return !_notificationContext.PossuiNotificacoes;
     }
 }

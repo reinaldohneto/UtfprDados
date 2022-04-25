@@ -21,6 +21,9 @@
     <data name="CampoObrigatorio" xml:space="preserve">
         <value>O campo {0} é obrigatório.</value>
     </data>
+    <data name="OrganizacaoPossuiVinculoComProcessamentos" xml:space="preserve">
+        <value>Organização não pode ser excluída pois possui vínculo com solicitações de processamento.</value>
+    </data>
     <data name="LoginOuSenhaIncorretos" xml:space="preserve">
         <value>Login ou senha incorretos</value>
     </data>
