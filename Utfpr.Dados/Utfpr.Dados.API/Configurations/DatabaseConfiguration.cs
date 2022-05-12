@@ -10,7 +10,7 @@ public static class DatabaseConfiguration
     public static IServiceCollection ConfigureDatabase(this IServiceCollection services, 
         IConfiguration configuration, IWebHostEnvironment environment)
     {
-        var connection = ConfigureDatabaseConnection(environment.EnvironmentName, configuration);
+        var connection = ConfigureDatabaseConnection(environment.EnvironmentName);
         
         services.AddDbContext<ApplicationContext>(opt =>
                 opt.UseNpgsql(connection))
@@ -20,12 +20,12 @@ public static class DatabaseConfiguration
         return services;
     }
     
-    private static string ConfigureDatabaseConnection(string environmentName, IConfiguration configuration)
+    private static string? ConfigureDatabaseConnection(string environmentName)
     {
-        string defaultConnectionString;
+        string? defaultConnectionString;
 
         if (environmentName == "Development") {
-            defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
+            defaultConnectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
         }
         else
         {

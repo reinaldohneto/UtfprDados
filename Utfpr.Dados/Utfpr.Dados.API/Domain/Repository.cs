@@ -36,8 +36,8 @@ public class Repository<T> : IRepository<T> where T : Entity
         var registro = await DbSet.FirstOrDefaultAsync(t => t.Id.Equals(id));
         if (registro == null)
         {
-            NotificationContext.NotFound(nameof(Mensagens.RegistroNaoEncontrado), 
-                Mensagens.RegistroNaoEncontrado);
+            NotificationContext.NotFound(nameof(Mensagens.RegistroNaoEncontradoGenerico), 
+                Mensagens.RegistroNaoEncontradoGenerico);
             return false;
         }
         

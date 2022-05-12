@@ -21,7 +21,7 @@ public class OrganizacaoRepository : Repository<Organizacao>, IOrganizacaoReposi
         if (registro == null)
         {
             NotificationContext.NotFound(nameof(Mensagens.RegistroNaoEncontrado), 
-                Mensagens.RegistroNaoEncontrado);
+                string.Format(Mensagens.RegistroNaoEncontrado, "OrganizacaoId"));
             return true;
         }
 

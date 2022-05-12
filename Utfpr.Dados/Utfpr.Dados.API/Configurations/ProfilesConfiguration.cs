@@ -1,5 +1,6 @@
 using AutoMapper;
 using Utfpr.Dados.API.Application.Organizacao;
+using Utfpr.Dados.API.Application.SolicitacaoProcessamento;
 using Utfpr.Dados.API.Application.Usuarios;
 
 namespace Utfpr.Dados.API.Configurations;
@@ -12,6 +13,7 @@ public static class ProfilesConfiguration
         {
             mc.AddProfile(new UsuarioAutoMapper());
             mc.AddProfile(new OrganizacaoAutoMapper());
+            mc.AddProfile(new SolicitacaoProcessamentoAutoMapper());
         });
 
         IMapper mapper = mapperConfig.CreateMapper();

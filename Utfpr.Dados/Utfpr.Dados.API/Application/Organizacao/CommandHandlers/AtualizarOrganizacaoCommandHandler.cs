@@ -28,7 +28,7 @@ public class AtualizarOrganizacaoCommandHandler : IRequestHandler<AtualizarOrgan
         if (registro == null)
         {
             _notificationContext.NotFound(nameof(Mensagens.RegistroNaoEncontrado),
-                Mensagens.RegistroNaoEncontrado);
+                string.Format(Mensagens.RegistroNaoEncontrado, "OrganizacaoId"));
             return new CommandResult<OrganizacaoViewModel>();
         }
 

@@ -29,7 +29,7 @@ public class ObterOrganizacaoPorIdQueryHandler : IRequestHandler< ObterOrganizac
             return _mapper.Map<OrganizacaoViewModel>(registro);
         
         _notificationContext.NotFound(nameof(Mensagens.RegistroNaoEncontrado), 
-            Mensagens.RegistroNaoEncontrado);
+            string.Format(Mensagens.RegistroNaoEncontrado, "OrganizacaoId"));
         return new OrganizacaoViewModel();
     }
 }

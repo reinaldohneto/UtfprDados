@@ -27,9 +27,7 @@ public class CadastrarOrganizacaoCommandHandler : IRequestHandler<CadastrarOrgan
 
         var registro = new Domain.Organizacoes.Entities.Organizacao(command.Id, command.Nome, command.Descricao);
 
-        var result = await _organizacaoRepository.Adicionar(registro);
-
-        if (result)
+        if (await _organizacaoRepository.Adicionar(registro))
             return new CommandResult<OrganizacaoViewModel>(true, 
                 _mapper.Map<OrganizacaoViewModel>(registro));
 

@@ -133,11 +133,20 @@ namespace Utfpr.Dados.API {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Registro não encontrado..
+        ///   Looks up a localized string similar to {0} não foi encontrado..
         /// </summary>
         internal static string RegistroNaoEncontrado {
             get {
                 return ResourceManager.GetString("RegistroNaoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registro não foi encontrado..
+        /// </summary>
+        internal static string RegistroNaoEncontradoGenerico {
+            get {
+                return ResourceManager.GetString("RegistroNaoEncontradoGenerico", resourceCulture);
             }
         }
     }
