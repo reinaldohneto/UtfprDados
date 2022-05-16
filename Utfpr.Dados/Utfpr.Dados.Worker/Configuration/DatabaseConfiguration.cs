@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Utfpr.Dados.API.Data;
-using Utfpr.Dados.API.Domain.Usuarios.Entities;
+using Utfpr.Dados.Worker.Domain.Usuarios.Entities;
+using Utfpr.Dados.Worker.Infrastructure.Data;
 
-namespace Utfpr.Dados.API.Configurations;
+namespace Utfpr.Dados.Worker.Configuration;
 
 public static class DatabaseConfiguration
 {
-    public static void ConfigureDatabase(this IServiceCollection services, IWebHostEnvironment environment)
+    public static void ConfigureDatabase(this IServiceCollection services, string? environment)
     {
-        var connection = ConfigureDatabaseConnection(environment.EnvironmentName);
+        var connection = ConfigureDatabaseConnection(environment);
         
         services.AddDbContext<ApplicationContext>(opt =>
                 opt.UseNpgsql(connection))
@@ -17,7 +17,7 @@ public static class DatabaseConfiguration
             .AddEntityFrameworkStores<ApplicationContext>();
     }
     
-    private static string? ConfigureDatabaseConnection(string environmentName)
+    private static string? ConfigureDatabaseConnection(string? environmentName)
     {
         string? defaultConnectionString;
 

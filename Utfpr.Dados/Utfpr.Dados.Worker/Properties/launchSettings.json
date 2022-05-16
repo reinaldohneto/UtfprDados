@@ -1,0 +1,14 @@
+﻿{
+  "profiles": {
+    "Utfpr.Dados.Worker": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "DATABASE_URL": "Server=localhost;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;",
+        "RABBITMQ_CONNECTION_STRING": "",
+        "DOWNLOAD_FOLDER": "Downloads\\"
+      }
+    }
+  }
+}

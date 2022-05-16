@@ -15,7 +15,8 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "TOKEN_CONFIGURATION_KEY": "KEY"
+        "TOKEN_CONFIGURATION_KEY": "KEY",
+        "DATABASE_URL": "Server=localhost;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
       },
       "applicationUrl": "https://localhost:7036;http://localhost:5035",
       "dotnetRunMessages": true
@@ -25,7 +26,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "TOKEN_CONFIGURATION_KEY": "KEY",
+        "DATABASE_URL": "Server=localhost;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
       }
     },
     "Docker": {

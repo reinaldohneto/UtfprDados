@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-Utfpr.Dados.Worker-5DB772AC-8248-4742-81AF-48E9A740D721</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MassTransit" Version="8.0.2" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Utfpr.Dados.API\Utfpr.Dados.API.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Mensagens.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Mensagens.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Remove="Downloads\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Mensagens.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Mensagens.resx</DependentUpon>
+      </Compile>
+      <Compile Remove="Downloads\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Downloads\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Downloads\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Downloads\80258b6c-7ad6-4a91-bcc2-c853a39e2caateste.json" />
+      <_ContentIncludedByDefault Remove="Downloads\teste.json" />
+    </ItemGroup>
+</Project>

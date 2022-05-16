@@ -13,7 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AdicionarAutenticacaoSwagger();
 builder.Services.DependencyInjectionConfiguration();
 builder.Services.AddProfilesConfiguration();
-builder.Services.ConfigureDatabase(builder.Configuration, builder.Environment);
+builder.Services.ConfigureDatabase(builder.Environment);
+builder.Services.ConfigureMessageQueue();
 
 var app = builder.Build();
 

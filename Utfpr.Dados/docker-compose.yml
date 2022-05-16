@@ -1,39 +1,70 @@
 version: '3.5'
 
 services:
-  backend_postgres:
-    container_name: postgres_container
-    image: postgres
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123Senha4!}
-      PGDATA: /data/postgres
-    volumes:
-       - backend_postgres:/data/postgres
-    ports:
-      - "5432:5432"
-    restart: unless-stopped
-    networks:
-      - backend
+#  backend_postgres:
+#    container_name: postgres_container
+#    image: postgres
+#    environment:
+#      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+#      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123Senha4!}
+#      PGDATA: /data/postgres
+#    volumes:
+#       - backend_postgres.data:/data/postgres
+#    ports:
+#      - "5432:5432"
+#    restart: unless-stopped
+#    networks:
+#      - backend
   
-  backend_api:
-    container_name: api_container
-    build: ./Utfpr.Dados.Api/
+#  backend_api:
+#    container_name: api_container
+#    build: ./Utfpr.Dados.Api/
+#    environment:
+#        ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
+#        TOKEN_CONFIGURATION_KEY: ${TOKEN_CONFIGURATION_KEY:-KEY}
+#        DATABASE_URL: "Host=backend_postgres;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
+#        RABBITMQ_CONNECTION_STRING: "amqps://xvpgyoal:GhYXppTQ1A1RVzVbQfu4H1yjGIlZAuWC@beaver.rmq.cloudamqp.com/xvpgyoal"
+#    ports:
+#      - "7036:7036"
+#    links:
+#      - backend_postgres
+#    depends_on:
+#      - "backend_postgres"
+#      - "backend_rabbitmq"
+#      - "backend_worker"
+#    networks:
+#      - backend
+      
+  backend_worker:
+    container_name: worker_container
+    build: ./Utfpr.Dados.Worker/
     environment:
         ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
-        TOKEN_CONFIGURATION_KEY: ${TOKEN_CONFIGURATION_KEY:-KEY}
-        DB_CONNECTION_STRING: "Host=backend_postgres;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
-    ports:
-      - "7036:7036"
-    links:
-      - backend_postgres
+        DATABASE_URL: "Host=backend_postgres;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
+        RABBITMQ_CONNECTION_STRING: "amqps://xvpgyoal:GhYXppTQ1A1RVzVbQfu4H1yjGIlZAuWC@beaver.rmq.cloudamqp.com/xvpgyoal"
     depends_on:
-      - "backend_postgres"
+        - "backend_postgres"
+        - "backend_rabbitmq"
     networks:
       - backend
     
+#  backend_rabbitmq:
+#    image: rabbitmq
+#    container_name: rabbit_container
+#    environment:
+#      RABBITMQ_DEFAULT_USER: admin
+#      RABBITMQ_DEFAULT_PASS: a!Bxg6ysb7S!
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+#    volumes:
+#      - backend_rabbitmq.data:/var/lib/rabbitmq
+#    networks:
+#      - backend
+     
 volumes:
-    backend_postgres:
+    backend_postgres.data:
+    backend_rabbitmq.data:
     
 networks:
     backend:

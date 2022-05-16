@@ -1,11 +1,12 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Utfpr.Dados.API.Domain.Organizacoes.Entities;
-using Utfpr.Dados.API.Domain.SolicitacoesProcessamento.Entities;
-using Utfpr.Dados.API.Domain.Usuarios.Entities;
+using Utfpr.Dados.Worker.Domain.Organizacoes.Entities;
+using Utfpr.Dados.Worker.Domain.SolicitacoesProcessamento.Entities;
+using Utfpr.Dados.Worker.Domain.Usuarios.Entities;
+using Utfpr.Dados.Worker.Infrastructure.Data.Maps;
 
-namespace Utfpr.Dados.API.Data;
+namespace Utfpr.Dados.Worker.Infrastructure.Data;
 
 public class ApplicationContext : IdentityDbContext<Usuario>
 {
@@ -20,7 +21,9 @@ public class ApplicationContext : IdentityDbContext<Usuario>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        builder.ApplyConfiguration(new OrganizacaoMap());
+        builder.ApplyConfiguration(new SolicitacaoProcessamentoMap());
+        builder.ApplyConfiguration(new UsuarioMap());
 
         base.OnModelCreating(builder);
     }
