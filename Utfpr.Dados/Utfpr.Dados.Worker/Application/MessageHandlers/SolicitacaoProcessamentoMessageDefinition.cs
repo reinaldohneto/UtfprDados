@@ -1,4 +1,5 @@
 using MassTransit;
+using Utfpr.Dados.Worker.Application.MessageHandlers;
 
 namespace Utfpr.Dados.Worker.Application.MessageHandlers;
 
@@ -13,6 +14,6 @@ public class SolicitacaoProcessamentoMessageDefinition : ConsumerDefinition<Soli
     protected override void ConfigureConsumer(IReceiveEndpointConfigurator endpointConfigurator,
         IConsumerConfigurator<SolicitacaoProcessamentoMessageHandler> consumerConfigurator)
     {
-        endpointConfigurator.UseMessageRetry(r => r.Intervals(100,200,500,800,1000));
+        endpointConfigurator.UseRetry(r => r.Intervals(100,200,500,800,1000));
     }
 }

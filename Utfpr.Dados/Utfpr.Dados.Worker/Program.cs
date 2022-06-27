@@ -1,3 +1,4 @@
+using Amazon.S3;
 using MassTransit;
 using Utfpr.Dados.Worker.Application.MessageHandlers;
 using Utfpr.Dados.Worker.Configuration;
@@ -28,6 +29,7 @@ await Host.CreateDefaultBuilder(args)
         });
         config.ConfigureDependencyInjection();
         config.ConfigureDatabase(Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT"));
+//        config.AddAWSService<IAmazonS3>();
     })
     .Build()
     .RunAsync();

@@ -9,16 +9,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MassTransit" Version="8.0.2" />
+        <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.2" />
+        <PackageReference Include="AWSSDK.S3" Version="3.7.9.4" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="10.4.0" />
+        <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
         <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.2" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
     </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Utfpr.Dados.API\Utfpr.Dados.API.csproj" />
-    </ItemGroup>
-
+    
     <ItemGroup>
       <EmbeddedResource Update="Mensagens.resx">
         <Generator>ResXFileCodeGenerator</Generator>
@@ -47,5 +51,13 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Downloads\80258b6c-7ad6-4a91-bcc2-c853a39e2caateste.json" />
       <_ContentIncludedByDefault Remove="Downloads\teste.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Identity" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Utfpr.Dados.Messages\Utfpr.Dados.Messages.csproj" />
     </ItemGroup>
 </Project>

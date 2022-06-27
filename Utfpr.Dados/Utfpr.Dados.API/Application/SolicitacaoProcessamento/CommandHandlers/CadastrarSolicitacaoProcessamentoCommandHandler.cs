@@ -3,10 +3,10 @@ using MassTransit;
 using MediatR;
 using Utfpr.Dados.API.Application.Notification;
 using Utfpr.Dados.API.Application.SolicitacaoProcessamento.Commands;
-using Utfpr.Dados.API.Application.SolicitacaoProcessamento.Messages;
 using Utfpr.Dados.API.Application.SolicitacaoProcessamento.ViewModels;
 using Utfpr.Dados.API.Domain.Organizacoes.Interfaces;
 using Utfpr.Dados.API.Domain.SolicitacoesProcessamento.Interfaces;
+using Utfpr.Dados.Messages.Messages;
 
 namespace Utfpr.Dados.API.Application.SolicitacaoProcessamento.CommandHandlers;
 

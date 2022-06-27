@@ -1,4 +1,4 @@
-namespace Utfpr.Dados.Worker.Application.Messages;
+namespace Utfpr.Dados.Messages.Messages;
 
 public class IniciarProcessamentoMessage
 {

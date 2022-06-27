@@ -42,4 +42,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Utfpr.Dados.Messages\Utfpr.Dados.Messages.csproj" />
+    </ItemGroup>
+
 </Project>

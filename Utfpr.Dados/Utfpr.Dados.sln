@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utfpr.Dados.API", "Utfpr.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utfpr.Dados.Worker", "Utfpr.Dados.Worker\Utfpr.Dados.Worker.csproj", "{C5800EE1-5E47-42EC-8C14-31AF24E46C60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utfpr.Dados.Messages", "Utfpr.Dados.Messages\Utfpr.Dados.Messages.csproj", "{F3CAA246-81AD-414B-9249-7FAB2BA7E9C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{C5800EE1-5E47-42EC-8C14-31AF24E46C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5800EE1-5E47-42EC-8C14-31AF24E46C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5800EE1-5E47-42EC-8C14-31AF24E46C60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3CAA246-81AD-414B-9249-7FAB2BA7E9C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3CAA246-81AD-414B-9249-7FAB2BA7E9C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3CAA246-81AD-414B-9249-7FAB2BA7E9C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3CAA246-81AD-414B-9249-7FAB2BA7E9C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

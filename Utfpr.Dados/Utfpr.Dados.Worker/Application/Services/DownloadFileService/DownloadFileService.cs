@@ -6,7 +6,7 @@ namespace Utfpr.Dados.Worker.Application.Services.DownloadFileService;
 public class DownloadFileService : IDownloadFileService
 {
 
-    public async Task<bool> DownloadFile(Uri fileUrl, string conjuntoDadosNome)
+    public async Task<bool> DownloadFile(Uri fileUrl, string conjuntoDadosNome, string folder)
     {
         if (!Validacoes(fileUrl))
             return false;
@@ -14,13 +14,13 @@ public class DownloadFileService : IDownloadFileService
         DateTime startTime = DateTime.UtcNow;
         HttpClient request = new HttpClient();
         using(Stream responseStream = await request.GetStreamAsync(fileUrl))
-        using (Stream fileStream = File.OpenWrite( Environment.GetEnvironmentVariable("DOWNLOAD_FOLDER") + conjuntoDadosNome))
+        using (Stream fileStream = File.OpenWrite(folder + conjuntoDadosNome))
         {
             byte[] buffer = new byte[4096];
             int bytesRead = await responseStream.ReadAsync(buffer, 0, 4096);
             while (bytesRead > 0)
             {
-                fileStream.Write(buffer, 0, bytesRead);
+                await fileStream.WriteAsync(buffer, 0, bytesRead);
                 DateTime nowTime = DateTime.UtcNow;
                 if ((nowTime - startTime).TotalMinutes > 5)
                 {
