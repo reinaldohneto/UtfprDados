@@ -1,5 +1,7 @@
+using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
+using Amazon.S3.Transfer;
 using MassTransit;
 using Utfpr.Dados.Messages.Messages;
 using Utfpr.Dados.Worker.Application.Services.CompressionService;
@@ -15,17 +17,19 @@ public class SolicitacaoProcessamentoMessageHandler : IConsumer<IniciarProcessam
     private readonly ICompressionService _compressionService;
     private readonly ISolicitacaoProcessamentoRepository _processamentoRepository;
     private readonly ILogger<SolicitacaoProcessamentoMessageHandler> _logger;
-//    private readonly IAmazonS3 _s3Client;
-
+    private readonly IAmazonS3 _amazonS3;
+    private readonly TransferUtility _transferUtility;
+    
     public SolicitacaoProcessamentoMessageHandler(IDownloadFileService downloadFileService, 
         ICompressionService compressionService, ISolicitacaoProcessamentoRepository processamentoRepository, 
-        ILogger<SolicitacaoProcessamentoMessageHandler> logger/*, IAmazonS3 s3Client*/)
+        ILogger<SolicitacaoProcessamentoMessageHandler> logger)
     {
         _downloadFileService = downloadFileService;
         _compressionService = compressionService;
         _processamentoRepository = processamentoRepository;
         _logger = logger;
-        /*_s3Client = s3Client;*/
+        _amazonS3 = new AmazonS3Client(RegionEndpoint.USEast1);
+        _transferUtility = new TransferUtility(_amazonS3);
     }
 
     public async Task Consume(ConsumeContext<IniciarProcessamentoMessage> context)
@@ -52,21 +56,12 @@ public class SolicitacaoProcessamentoMessageHandler : IConsumer<IniciarProcessam
 
         await _compressionService.CompressTextFile(context.Message.ConjuntoDadosNome, folder, context.Message.ProcessamentoId);
 
-        await _compressionService.DecompressTextFile(context.Message.ConjuntoDadosNome, folder,
-            context.Message.ProcessamentoId);
-        /*
-        using (var stream =
-               File.OpenRead(folder + context.Message.ProcessamentoId + context.Message.ConjuntoDadosNome))
-        {
-            var putRequest = new PutObjectRequest
-            {
-                Key = context.Message.ProcessamentoId + context.Message.ConjuntoDadosNome,
-                BucketName = "reinaldo-utfpr-tcc",
-                InputStream = stream,
-                AutoCloseStream = true
-            };
-            var respose = await _s3Client.PutObjectAsync(putRequest);
-        }
-    */
+        TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
+
+        request.BucketName = string.Format("{0}{1}", Environment.GetEnvironmentVariable("BUCKET_NAME"), 
+            context.Message.ConjuntoDadosNome);
+        request.Key = context.Message.ConjuntoDadosNome;
+        request.InputStream = File.OpenRead(folder + context.Message.ConjuntoDadosNome);
+        await _transferUtility.UploadAsync(request);
     }
 }

@@ -15,14 +15,11 @@ public class CompressionService : ICompressionService
     {
         try
         {
-            await using FileStream stream = File.OpenRead(folder + fileName);
-            await using FileStream fileStream = File.Create(folder + processamentoId + fileName);
-            await using var brotliStream = new BrotliStream(fileStream, CompressionLevel.SmallestSize, true);
+            await using var stream = File.OpenRead(folder + fileName);
+            await using var fileStream = File.Create(folder + processamentoId + fileName);
+            await using var brotliStream = new BrotliStream(fileStream, CompressionLevel.SmallestSize);
+            await stream.CopyToAsync(brotliStream);
 
-            await stream.CopyToAsync(brotliStream, 8192);
-            await brotliStream.FlushAsync();
-            brotliStream.Close();
-            
             return true;
         }
         catch (Exception e)

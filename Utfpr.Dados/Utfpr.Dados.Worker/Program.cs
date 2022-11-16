@@ -29,7 +29,6 @@ await Host.CreateDefaultBuilder(args)
         });
         config.ConfigureDependencyInjection();
         config.ConfigureDatabase(Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT"));
-//        config.AddAWSService<IAmazonS3>();
     })
     .Build()
     .RunAsync();
