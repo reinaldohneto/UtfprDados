@@ -58,8 +58,7 @@ public class SolicitacaoProcessamentoMessageHandler : IConsumer<IniciarProcessam
 
         TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
 
-        request.BucketName = string.Format("{0}{1}", Environment.GetEnvironmentVariable("BUCKET_NAME"), 
-            context.Message.ConjuntoDadosNome);
+        request.BucketName = string.Format(Environment.GetEnvironmentVariable("BUCKET_NAME")!);
         request.Key = context.Message.ConjuntoDadosNome;
         request.InputStream = File.OpenRead(folder + context.Message.ConjuntoDadosNome);
         await _transferUtility.UploadAsync(request);
