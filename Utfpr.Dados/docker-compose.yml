@@ -18,12 +18,12 @@ services:
   
   backend-api:
     container_name: api_container
-    build: ./Utfpr.Dados.Api/
+    build: ./
     environment:
         ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
         TOKEN_CONFIGURATION_KEY: ${TOKEN_CONFIGURATION_KEY:-KEY}
         DATABASE_URL: "Host=backend_postgres;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
-        RABBITMQ_CONNECTION_STRING: "amqps://xvpgyoal:GhYXppTQ1A1RVzVbQfu4H1yjGIlZAuWC@beaver.rmq.cloudamqp.com/xvpgyoal"
+        RABBITMQ_CONNECTION_STRING: "amqps://ohwpbhll:lX35CIjzhhNCZxsKGFRfKGhG1uTTLjx4@beaver.rmq.cloudamqp.com/ohwpbhll"
     ports:
       - "7036:7036"
     links:
@@ -31,22 +31,22 @@ services:
     depends_on:
       - "backend-postgres"
       - "backend-rabbitmq"
-      - "backend-worker"
+    #  - "backend-worker"
     networks:
       - backend
       
-  backend-worker:
-    container_name: worker_container
-    build: ./Utfpr.Dados.Worker/
-    environment:
-        ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
-        DATABASE_URL: "Host=backend_postgres;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
-        RABBITMQ_CONNECTION_STRING: "amqps://xvpgyoal:GhYXppTQ1A1RVzVbQfu4H1yjGIlZAuWC@beaver.rmq.cloudamqp.com/xvpgyoal"
-    depends_on:
-        - "backend-postgres"
-        - "backend-rabbitmq"
-    networks:
-      - backend
+  #backend-worker:
+  #  container_name: worker_container
+  #  build: ./Utfpr.Dados.Worker/
+  #  environment:
+  #      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Development}
+  #      DATABASE_URL: "Host=backend_postgres;Port=5432;Database=UTFPR_DADOS;User Id=postgres;Password=123Senha4!;"
+  #      RABBITMQ_CONNECTION_STRING: "amqps://xvpgyoal:GhYXppTQ1A1RVzVbQfu4H1yjGIlZAuWC@beaver.rmq.cloudamqp.com/xvpgyoal"
+  #  depends_on:
+  #      - "backend-postgres"
+  #      - "backend-rabbitmq"
+  #  networks:
+  #    - backend
     
   backend-rabbitmq:
     image: rabbitmq
